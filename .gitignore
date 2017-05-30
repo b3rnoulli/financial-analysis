@@ -1,3 +1,4 @@
 % git ignored files
 empirical data/**/spectrum/*
 empirical data/**/surrogate/*
+**.m~
