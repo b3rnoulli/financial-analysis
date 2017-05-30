@@ -8,10 +8,10 @@ frame_size_type = 'YEAR';
 frame_step_size = 1;
 frame_step_type = 'MONTH';
 
-surrogates_per_window = 10;
+surrogates_per_window = 100;
 
 for i=1:length(indexes(:,1))
-    path = ['/Users/b3rnoulli/Development/Matlab workspace/empirical data/',indexes{i,1},'/spectrum/window/surrogate/'];
+    path = [get_root_path(),'/empirical data/',indexes{i,1},'/spectrum/window/surrogate/'];
     data = load(indexes{i,1});
     
     start_index = find_index(data.date,indexes{i,2});
@@ -20,15 +20,15 @@ for i=1:length(indexes(:,1))
     while end_index < find_index(data.date,indexes{i,3})
         fprintf('[specmulti_window_script] : Calculating MFDFA for index %s date scope %s to %s\n', indexes{i,1},...
             datestr(data.date(start_index)), datestr(data.date(end_index)));
-        fourier_spectrum_file_name = [indexes{i,1},'-fourier-surrogate-spectrum-',datestr(data.date(start_index)),...
-            '-',datestr(data.date(end_index))];
+        fourier_spectrum_file_name = [indexes{i,1},'-fourier-surrogate-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')];
         
         fourier_spectrum_data = load([path, fourier_spectrum_file_name]);
         fourier_surrogate_scales = zeros(surrogates_per_window, 41);
         fourier_surrogate_fq = zeros(surrogates_per_window, 41, 100);
         
-        shuffled_surrogate_data = load([path, indexes{i,1},'-shuffled-surrogate-spectrum-',datestr(data.date(start_index)),...
-            '-',datestr(data.date(end_index))]);
+        shuffled_surrogate_data = load([path, indexes{i,1},'-shuffled-surrogate-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')]);
         shuffled_surrogate_scales = zeros(surrogates_per_window, 41);
         shuffled_surrogate_fq = zeros(surrogates_per_window, 41, 100);
         
@@ -42,16 +42,16 @@ for i=1:length(indexes(:,1))
         end
         
         save_path = [path,'/mean/'];
-        fourier_surrogate_mean_file_name = [save_path,indexes{i,1},'-fourier-surrogate-mean-spectrum-',datestr(data.date(start_index)),...
-            '-',datestr(data.date(end_index))];
+        fourier_surrogate_mean_file_name = [save_path,indexes{i,1},'-fourier-surrogate-mean-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')];
         MFDFA2.q = -10:0.2:10;
         MFDFA2.q(51) = [];
         MFDFA2.Scale = mean(fourier_surrogate_scales);
         MFDFA2.Fq = reshape(mean(fourier_surrogate_fq),41,100);
         save(fourier_surrogate_mean_file_name,'MFDFA2');
         
-        shuffled_surrogate_mean_file_name = [save_path,indexes{i,1},'-shuffled-surrogate-mean-spectrum-',datestr(data.date(start_index)),...
-            '-',datestr(data.date(end_index))];
+        shuffled_surrogate_mean_file_name = [save_path,indexes{i,1},'-shuffled-surrogate-mean-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')];
         MFDFA2.Scale = mean(shuffled_surrogate_scales);
         MFDFA2.Fq = reshape(mean(shuffled_surrogate_fq),41,100);
         save(shuffled_surrogate_mean_file_name,'MFDFA2');

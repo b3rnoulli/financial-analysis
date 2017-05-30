@@ -10,7 +10,7 @@ frame_size_type = 'YEAR';
 frame_step_size = 1;
 frame_step_type = 'MONTH';
 
-surrogate_count = 10;
+surrogate_count = 100;
 
 for i=1:length(indexes(:,1))
     path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/surrogate/'];
