@@ -33,7 +33,7 @@ for i=1:length(indexes(:,1))
         fourier_surrogate_data = load(fourier_surrogate_file_name);
         shuffled_surrogate_data = load(shuffled_surrogate_file_name);
         
-        for j=1:surrogate_count
+        parfor j=1:surrogate_count
             fourier_surrogate_mfdfa_matrix(j) = MFDFA(fourier_surrogate_data.fourier_surrogate_matrix(j,:),' not_used', false);
             shuffled_surrogate_mfdfa_matrix(j) = MFDFA(shuffled_surrogate_data.shuffled_surrogate_matrix(j,:),'not_used', false);       
         end
