@@ -1,0 +1,17 @@
+indexes = {
+    'SP500-removed',datetime('03-Jan-1950'), datetime('29-Dec-2016'), '^-', 'r', 'S&P500 1950-2017';
+    'NASDAQ',       datetime('03-Jan-1950'), datetime('29-Dec-2016'), 'o-', 'k', 'NASDAQ100 1950-2017'
+    };
+save_figures = true;
+
+f = figure;
+for i=1:1:length(indexes)
+    data = load(index_data{i,1});
+    
+    start_index = find_index(data,index_data{i,2});
+    split_index = find_index(data,split_date);
+    
+    fprintf('Plotting distribution for index %s from %s to %s \n', datestr(index_data{i,1}, index_data{i,2},split_date);
+    
+    
+end
