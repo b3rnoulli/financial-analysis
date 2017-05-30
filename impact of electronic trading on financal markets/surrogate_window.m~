@@ -12,8 +12,13 @@ frame_step_type = 'MONTH';
 surrogate_count = 100;
 
 for i=1:length(indexes(:,1))
-
-    path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/surrogate/window/'];
+    if isempty(getenv('MATLAB_WORKSPACE_HOME'))
+        
+    else
+        
+    end
+    
+    path = [,'/financial-analysis/empirical data/',indexes{i,1},'/surrogate/window/'];
     data = load(indexes{i,1});
         
     start_index = find_index(data.date,indexes{i,2});
