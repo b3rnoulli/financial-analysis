@@ -18,9 +18,9 @@ for i=1:length(indexes(:,1))
 
     while end_index < find_index(data.date,indexes{i,3})        
         fprintf('[mfdfa_windows_script] : Calculating MFDFA for index %s date scope %s to %s\n', indexes{i,1},...
-            datestr(data.date(start_index)), datestr(data.date(end_index)));
-        spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index)),...
-            '-',datestr(data.date(end_index))];
+            datestr(data.date(start_index),'yyyy-mm-dd'), datestr(data.date(end_index),'yyyy-mm-dd'));
+        spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')];
         
         MFDFA(data.returns(start_index:end_index), [path,spectrum_file_name]);
         start_index = shift_index(data.date, start_index, frame_step_size, frame_step_type);
