@@ -1,7 +1,7 @@
 % index name, start year, end year
 indexes = {
        'SP500-removed', '01-Jan-1950', '31-Dec-2016';
-       'NASDAQ',        '01-Jan-1950', '31-Dec-2016';
+       'NASDAQ-removed', '01-Jan-1950', '31-Dec-2016';
     };
 
 frame_size = 20;
@@ -10,7 +10,7 @@ frame_step_size = 1;
 frame_step_type = 'MONTH';
 
 for i=1:length(indexes(:,1))
-    path = ['/Users/b3rnoulli/Development/Matlab workspace/empirical data/',indexes{i,1},'/spectrum/window/'];
+    path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/'];
     data = load(indexes{i,1});
     
     start_index = find_index(data.date,indexes{i,2});

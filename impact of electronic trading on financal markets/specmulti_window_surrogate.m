@@ -1,6 +1,6 @@
 indexes = {
-    'SP500-removed',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 350, 800;
-%     'NASDAQ',       datetime('01-Jan-1950'), datetime('31-Dec-2016'), 450, 700;
+    'SP500-removed',        datetime('01-Jan-1950'), datetime('31-Dec-2016'), 350, 800;
+    'NASDAQ-removed',       datetime('01-Jan-1950'), datetime('31-Dec-2016'), 450, 700;
     };
 
 frame_size = 20;
@@ -8,10 +8,9 @@ frame_size_type = 'YEAR';
 frame_step_size = 1;
 frame_step_type = 'MONTH';
 
-surrogates_per_window = 10;
 
 for i=1:length(indexes(:,1))
-    path = ['/Users/b3rnoulli/Development/Matlab workspace/empirical data/',indexes{i,1},'/spectrum/window/surrogate/mean/'];
+    path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/surrogate/mean/'];
     data = load(indexes{i,1});
     
     start_index = find_index(data.date,indexes{i,2});
