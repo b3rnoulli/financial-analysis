@@ -11,7 +11,7 @@ frame_step_type = 'MONTH';
 surrogates_per_window = 100;
 
 for i=1:length(indexes(:,1))
-    path = [get_root_path(),'/empirical data/',indexes{i,1},'/spectrum/window/surrogate/'];
+    path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/surrogate/'];
     data = load(indexes{i,1});
     
     start_index = find_index(data.date,indexes{i,2});
