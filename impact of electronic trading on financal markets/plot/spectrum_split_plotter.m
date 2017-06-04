@@ -1,32 +1,32 @@
 indexes = {
     'SP500-removed',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), '^-', 'r', 'S&P500 ';
-    'NASDAQ',       datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), 'o-', 'k', 'NASDAQ COMP '
+    'NASDAQ-removed', datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), 'o-', 'k', 'NASDAQ COMP '
     };
 
-save_figures = true;
+save_figures = false;
 
 for i=1:1:length(indexes(:,1))
     f = figure('units','normalized','position',[.1 .1 .5 .6]);
     f.PaperPositionMode = 'auto';
     
     % first part
-    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,2}),...
-        '-', datestr(indexes{i,3})];
+    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,2},'yyyy-mm-dd'),...
+        '-', datestr(indexes{i,3},'yyyy-mm-dd')];
     spectrum_data = load([spectrum_file_name,'.mat']);
     p = spectrum_plotter(f, spectrum_data.MFDFA2.alfa(31:70), spectrum_data.MFDFA2.f(31:70), '-o', [ 0    0.4470    0.7410], [ indexes{i,7}, datestr(indexes{i,2},'yyyy'),'-',datestr(indexes{i,3},'yyyy')]);
     set(p,'linewidth',3);
     
     % second part
-    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,3}),...
-        '-', datestr(indexes{i,4})];
+    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,3},'yyyy-mm-dd'),...
+        '-', datestr(indexes{i,4},'yyyy-mm-dd')];
     spectrum_data = load([spectrum_file_name,'.mat']);
     p = spectrum_plotter(f, spectrum_data.MFDFA2.alfa(31:70), spectrum_data.MFDFA2.f(31:70), 'x-', 'k', [ indexes{i,7}, datestr(indexes{i,3},'yyyy'),'-',datestr(indexes{i,4},'yyyy')]);
     set(p,'linewidth',3);
     
     
     % whole data
-    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,2}),...
-        '-', datestr(indexes{i,4})];
+    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,2},'yyyy-mm-dd'),...
+        '-', datestr(indexes{i,4},'yyyy-mm-dd')];
     spectrum_data = load([spectrum_file_name,'.mat']);
     p = spectrum_plotter(f, spectrum_data.MFDFA2.alfa(31:70), spectrum_data.MFDFA2.f(31:70), '-^', 'r', [indexes{i,7}, datestr(indexes{i,2},'yyyy'),'-',datestr(indexes{i,4},'yyyy')]);
     set(p,'linewidth',3);
@@ -37,8 +37,8 @@ for i=1:1:length(indexes(:,1))
     %% insets
     
     %lewo - first part
-    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,2}),...
-        '-', datestr(indexes{i,3})];
+    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,2},'yyyy-mm-dd'),...
+        '-', datestr(indexes{i,3},'yyyy-mm-dd')];
     spectrum_data = load([spectrum_file_name,'.mat']);
     axes('Position',[.47 .15 .21 .21]);
     box on
@@ -54,8 +54,8 @@ for i=1:1:length(indexes(:,1))
     hold off
     
     %prawo - second part
-    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,3}),...
-        '-', datestr(indexes{i,4})];
+    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,3},'yyyy-mm-dd'),...
+        '-', datestr(indexes{i,4},'yyyy-mm-dd')];
     spectrum_data = load([spectrum_file_name,'.mat']);
     axes('Position',[.68 .15 .21 .21]);
     box on
@@ -73,8 +73,8 @@ for i=1:1:length(indexes(:,1))
     hold off
     
     %gora - whole data
-    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,2}),...
-        '-', datestr(indexes{i,4})];
+    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(indexes{i,2},'yyyy-mm-dd'),...
+        '-', datestr(indexes{i,4},'yyyy-mm-dd')];
     spectrum_data = load([spectrum_file_name,'.mat']);
     axes('Position',[.68 .36 .21 .21]);
     box on

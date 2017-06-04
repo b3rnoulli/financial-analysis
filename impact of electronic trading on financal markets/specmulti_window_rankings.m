@@ -9,7 +9,7 @@ frame_step_size = 1;
 frame_step_type = 'MONTH';
 
 for i=1:length(indexes(:,1))
-    path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/'];
+    path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/surrogate/mean/'];
     data = load(indexes{i,1});
     
     start_index = find_index(data.date,indexes{i,2});
@@ -18,7 +18,7 @@ for i=1:length(indexes(:,1))
     while end_index < find_index(data.date,indexes{i,3})        
         fprintf('[specmulti_window_script] : Calculating MFDFA for index %s date scope %s to %s\n', indexes{i,1},...
             datestr(data.date(start_index)), datestr(data.date(end_index)));
-        spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+        spectrum_file_name = [indexes{i,1},'-rankings-surrogate-mean-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
             '-',datestr(data.date(end_index),'yyyy-mm-dd')];
         
         spectrum_data = load([path, spectrum_file_name]);

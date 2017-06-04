@@ -1,6 +1,6 @@
 % index name, start year, end year
 indexes = {
-       'SP500-removed', '01-Jan-1950', '31-Dec-2016';
+       'SP500-removed-2', '01-Jan-1985', '31-Dec-2016';
        'NASDAQ-removed', '01-Jan-1950', '31-Dec-2016';
     };
 

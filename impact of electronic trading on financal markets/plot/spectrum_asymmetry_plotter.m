@@ -4,7 +4,7 @@ clc
 % index name, start year, end year
 indexes = {
     'SP500-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'xk';
-    'NASDAQ',        datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok';
+    'NASDAQ-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok';
     };
 
 frame_size = 20;
@@ -30,8 +30,8 @@ for i=1:length(indexes(:,1))
     while end_index < find_index(data.date,indexes{i,3})
         fprintf('[spectrum_asymmetry_plotter] : Calculating asymmetry for index %s date scope %s to %s\n', indexes{i,1},...
             datestr(data.date(start_index)), datestr(data.date(end_index)));
-        spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index)),...
-            '-',datestr(data.date(end_index))];
+        spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')];
         spectrum_data = load(spectrum_file_name);
 
         asymmetry(point_counter) = spectrum_asymmetry(spectrum_data.MFDFA2.alfa(50), min(spectrum_data.MFDFA2.alfa(50:71)),...

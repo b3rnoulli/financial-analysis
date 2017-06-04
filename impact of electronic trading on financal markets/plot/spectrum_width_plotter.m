@@ -3,8 +3,8 @@ clc
 
 % index name, start year, end year
 indexes = {
-%     'SP500-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'xk';
-    'NASDAQ',        datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok';
+    'SP500-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'xk';
+    'NASDAQ-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok';
     };
 
 frame_size = 20;
@@ -15,7 +15,7 @@ frame_step_type = 'MONTH';
 
 
 for i=1:length(indexes(:,1))
-    path = ['/Users/b3rnoulli/Development/Matlab workspace/empirical data/',indexes{i,1},'/spectrum/window/'];
+    path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/'];
     data = load(indexes{i,1});
     
     f = figure('units','normalized','position',[.1 .1 .6 .6]);
@@ -32,19 +32,24 @@ for i=1:length(indexes(:,1))
     while end_index < find_index(data.date,indexes{i,3})
         fprintf('[spectrum_width_plotter] : Calculating MFDFA for index %s date scope %s to %s\n', indexes{i,1},...
             datestr(data.date(start_index)), datestr(data.date(end_index)));
-        spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index)),...
-            '-',datestr(data.date(end_index))];
+        spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')];
         spectrum_data = load(spectrum_file_name);
         
         alpha_y(point_counter) = spectrum_width(spectrum_data.MFDFA2.alfa(31:70),spectrum_data.MFDFA2.f(31:70));
         
-        fourier_surrogate_mean_spectrum = load([path,'/surrogate/mean/',indexes{i,1},'-fourier-surrogate-mean-spectrum-',datestr(data.date(start_index)),...
-            '-',datestr(data.date(end_index))]);
+        fourier_surrogate_mean_spectrum = load([path,'/surrogate/mean/',indexes{i,1},'-fourier-surrogate-mean-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')]);
         alpha_y_fourier_surrogate(point_counter) = spectrum_width(fourier_surrogate_mean_spectrum.MFDFA2.alfa(31:70), fourier_surrogate_mean_spectrum.MFDFA2.f(31:70));
         
-        shuffled_surrogate_mean_spectrum = load([path,'/surrogate/mean/',indexes{i,1},'-shuffled-surrogate-mean-spectrum-',datestr(data.date(start_index)),...
-            '-',datestr(data.date(end_index))]);
+        shuffled_surrogate_mean_spectrum = load([path,'/surrogate/mean/',indexes{i,1},'-shuffled-surrogate-mean-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')]);
         alpha_y_shuffled_surrogate(point_counter) = spectrum_width(shuffled_surrogate_mean_spectrum.MFDFA2.alfa(31:70), shuffled_surrogate_mean_spectrum.MFDFA2.f(31:70));
+        
+        
+        rankings_surrogate_mean_spectrum = load([path,'/surrogate/mean/',indexes{i,1},'-rankings-surrogate-mean-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+            '-',datestr(data.date(end_index),'yyyy-mm-dd')]);
+        alpha_y_rankings_surrogate(point_counter) =spectrum_width(rankings_surrogate_mean_spectrum.MFDFA2.alfa(31:70), rankings_surrogate_mean_spectrum.MFDFA2.f(31:70));
         
         date_points(point_counter) = data.date(end_index);
         
@@ -55,6 +60,8 @@ for i=1:length(indexes(:,1))
     plot(date_points,alpha_y,'xk','MarkerSize',8);
     hold on;
     plot(date_points, alpha_y_fourier_surrogate,'or','MarkerSize',8);
+    plot(date_points, alpha_y_rankings_surrogate, '*b', 'MarkerSize',8);
+    plot(date_points, alpha_y-alpha_y_fourier_surrogate, 'sg', 'MarkerSize',8);
 %     plot(date_points, alpha_y_shuffled_surrogate,'^g','MarkerSize',8);
     x_left = datenum(data.date(shift_index(data.date, find_index(data.date, indexes{i,2}), frame_size, frame_size_type)))-100;
     x_right = datenum(indexes{i,3});

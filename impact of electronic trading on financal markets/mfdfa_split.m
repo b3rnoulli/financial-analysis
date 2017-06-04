@@ -1,9 +1,9 @@
 indexes = {
-    'SP500-removed',datetime('01-Jan-1950'),  datetime('01-Jan-1987'), datetime('1-Jan-2017');
-    'NASDAQ',       datetime('01-Jan-1950'),  datetime('01-Jan-1987'), datetime('1-Jan-2017')
+%     'SP500-removed',datetime('01-Jan-1950'),  datetime('01-Jan-1987'), datetime('1-Jan-2017');
+    'NASDAQ-removed',       datetime('01-Jan-1950'),  datetime('01-Jan-1987'), datetime('1-Jan-2017')
     };
 
-data_base_path = '/Users/b3rnoulli/Development/Matlab workspace/empirical data/';
+data_base_path = '/Users/b3rnoulli/Development/Matlab workspace/financial-analysis/empirical data/';
 for i=1:1:length(indexes(:,1))
     data = load([data_base_path,indexes{i,1},'/',indexes{i,1},'.mat']);
     log_return_rates = zscore(diff(log(data.close)));
@@ -14,17 +14,17 @@ for i=1:1:length(indexes(:,1))
     
     path = [data_base_path, indexes{i,1},'/'];
     % 1950 - 2017
-    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index)),...
-        '-', datestr(data.date(end_index))];
+    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+        '-', datestr(data.date(end_index),'yyyy-mm-dd')];
     MFDFA(log_return_rates(start_index:end_index), [path, 'spectrum/', spectrum_file_name]);
     
     % 1950 - 1987
-    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index)),...
-        '-', datestr(data.date(split_index))];
+    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+        '-', datestr(data.date(split_index),'yyyy-mm-dd')];
     MFDFA(log_return_rates(start_index:split_index), [path, 'spectrum/', spectrum_file_name]);
     
     % 1987 - 2017
-    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(split_index)),...
-        '-', datestr(data.date(end_index))];
+    spectrum_file_name = [indexes{i,1},'-spectrum-',datestr(data.date(split_index),'yyyy-mm-dd'),...
+        '-', datestr(data.date(end_index),'yyyy-mm-dd')];
     MFDFA(log_return_rates(split_index:end_index), [path, 'spectrum/', spectrum_file_name]);
 end
