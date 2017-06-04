@@ -1,7 +1,17 @@
 % index name, start year, end year
 indexes = {
-       'SP500-removed-2', '01-Jan-1985', '31-Dec-2016';
-       'NASDAQ-removed', '01-Jan-1950', '31-Dec-2016';
+       'AAPL', '01-Jan-1985', '31-Dec-2016';
+       'BRKA', '01-Jan-1985', '31-Dec-2016';
+       'DIS', '01-Jan-1985', '31-Dec-2016';
+       'GE', '01-Jan-1985', '31-Dec-2016';
+       'INTC', '01-Jan-1985', '31-Dec-2016';
+       'IP', '01-Jan-1985', '31-Dec-2016';
+       'JPM', '01-Jan-1985', '31-Dec-2016';
+       'PFE', '01-Jan-1985', '31-Dec-2016';
+       'PG', '01-Jan-1985', '31-Dec-2016';
+       'T', '01-Jan-1985', '31-Dec-2016';
+       'TXN', '01-Jan-1985', '31-Dec-2016';
+       'XOM', '01-Jan-1985', '31-Dec-2016';
     };
 
 frame_size = 20;
