@@ -2,7 +2,7 @@ function [f] = cdf_plotter(f, log_return_rates, name, symbol, color, figure_titl
 fprintf('[cdf_plotter] Plotting pdf for %s \n', name);
 
 [y,x] = ecdf(abs(log_return_rates));
-loglog(x, 1-y, [symbol,color],'MarkerSize', 7, 'MarkerFaceColor', color, 'DisplayName', name);
+loglog(x, 1-y, [symbol,color],'MarkerSize', 7, 'DisplayName', name);
 xlim([0.2,100]);
 ylim([10^-4,1]);
 hold on;

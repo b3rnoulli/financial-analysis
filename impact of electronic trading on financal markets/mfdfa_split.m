@@ -1,6 +1,10 @@
 indexes = {
 %     'SP500-removed',datetime('01-Jan-1950'),  datetime('01-Jan-1987'), datetime('1-Jan-2017');
-    'NASDAQ-removed',       datetime('01-Jan-1950'),  datetime('01-Jan-1987'), datetime('1-Jan-2017')
+%     'NASDAQ-removed',       datetime('01-Jan-1950'),  datetime('01-Jan-1987'), datetime('1-Jan-2017')
+%     'DJIA',       datetime('01-Jan-1950'),  datetime('01-Jan-1987'), datetime('1-Jan-2017');
+%     'NDX',       datetime('01-Oct-1985'),  datetime('01-Jan-1987'), datetime('1-Jan-2017');
+%     'IXIC',       datetime('01-Jan-1971'),  datetime('01-Jan-1987'), datetime('1-Jan-2017');
+    '9-companies',       datetime('01-Jan-1962'),  datetime('01-Jan-1987'), datetime('1-Jan-2017');
     };
 
 data_base_path = '/Users/b3rnoulli/Development/Matlab workspace/financial-analysis/empirical data/';

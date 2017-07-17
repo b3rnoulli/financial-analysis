@@ -28,6 +28,8 @@ end
 k(1) = dsearchn(Scale',bottom_bound);
 k(2) = dsearchn(Scale',top_bound);
 
+fprintf('BOTTOM BOUND: %s TOP BOUND: %s',num2str(bottom_bound),num2str(top_bound));
+
 liczba_q=length(q);
 
 n1=k(1);

@@ -1,6 +1,8 @@
 indexes = {
-    'SP500-removed',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), '^-', 'r', 'S&P500 ';
-    'NASDAQ-removed', datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), 'o-', 'k', 'NASDAQ COMP '
+%     'SP500-removed',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), '^-', 'r', 'S&P500 ';
+%      'DJIA',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('03-Jan-2017'), '^-', 'r', 'DJIA ';
+%     'NASDAQ-removed', datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), 'o-', 'k', 'NASDAQ COMP '
+%     '9-companies', datetime('02-Jan-1962'), datetime('02-Jan-1987'), datetime('01-Nas-2016'), 'o-', 'k', '9-companies'
     };
 
 save_figures = false;
