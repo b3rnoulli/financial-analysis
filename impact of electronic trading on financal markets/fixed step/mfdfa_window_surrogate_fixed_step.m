@@ -1,9 +1,9 @@
 % index name, start year, end year
 clear
 indexes = {
-%     'SP500-removed',         '01-Jan-1950', '31-Dec-2016';
-%     'NASDAQ-removed',        '01-Jan-1950', '31-Dec-2016';
+    'SP500-removed',         '01-Jan-1950', '31-Dec-2016';
     'DJIA',                  '01-Jan-1950', '31-Dec-2016';
+    'NASDAQ-removed',        '01-Jan-1950', '31-Dec-2016';
     };
 
 frame_size = 5000;
@@ -13,7 +13,7 @@ surrogate_count = 100;
 
 
 for i=1:length(indexes(:,1))
-    path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/surrogate/'];
+    path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/surrogate-fixed-step/'];
     data = load(indexes{i,1});
     
     start_index = 1;

@@ -1,8 +1,8 @@
 % index name, start year, end year
 clear
 indexes = {
-%     'SP500-removed',         '01-Jan-1950', '31-Dec-2016';
-%     'NASDAQ-removed',        '01-Jan-1950', '31-Dec-2016';
+    'SP500-removed',         '01-Jan-1950', '31-Dec-2016';
+    'NASDAQ-removed',        '01-Jan-1950', '31-Dec-2016';
     'DJIA',                  '01-Jan-1950', '31-Dec-2016';
     };
 

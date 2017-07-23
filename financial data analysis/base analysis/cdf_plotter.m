@@ -1,4 +1,4 @@
-function [f] = cdf_plotter(f, log_return_rates, name, symbol, color, figure_title, plot_reference)
+function [f, x, y] = cdf_plotter(f, log_return_rates, name, symbol, color, figure_title, plot_reference)
 fprintf('[cdf_plotter] Plotting pdf for %s \n', name);
 
 [y,x] = ecdf(abs(log_return_rates));
