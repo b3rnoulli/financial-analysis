@@ -3,10 +3,8 @@ indexes = {
     'NASDAQ-removed',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 30, 208;
     };
 
-frame_size = 20;
-frame_size_type = 'YEAR';
-frame_step_size = 1;
-frame_step_type = 'MONTH';
+frame_size = 5000;
+frame_step_size = 20;
 
 surrogates_per_window = 100;
 
