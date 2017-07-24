@@ -29,7 +29,7 @@ indexes = {
 %     'MMM', 34, 400;
 %     'BA',  34, 400;
 %     'BAC', 34, 400;
-        'DJIA-reconstructed', 34, 400;
+        'SP500-removed', 34, 400;
     };
 
 % indexes = {
@@ -50,8 +50,8 @@ frame_step_size = 20;
 
 for i=1:length(indexes(:,1))
     path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/'];
-    data = load([indexes{i,1},'_1980_03_18__2017_06_16_ret']);
-%         data = load([indexes{i,1}]);
+%     data = load([indexes{i,1},'_1980_03_18__2017_06_16_ret']);
+        data = load([indexes{i,1}]);
     mkdir([get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/']);
     
     start_index = 1;
