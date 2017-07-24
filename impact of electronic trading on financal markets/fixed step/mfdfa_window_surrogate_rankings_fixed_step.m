@@ -18,7 +18,7 @@ for i=1:length(indexes(:,1))
     start_index = 1;
     end_index = frame_size;
     
-    while end_index < find_index(data.date,indexes{i,3})
+    while end_index < length(data.returns)
         fprintf('[surrogate_mfdfa_script] : Calculating MFDFA for surrogate index %s date scope %s to %s\n', indexes{i,1},...
             datestr(data.date(start_index)), datestr(data.date(end_index)));
         
