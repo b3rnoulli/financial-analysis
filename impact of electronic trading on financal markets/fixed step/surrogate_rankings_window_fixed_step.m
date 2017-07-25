@@ -4,7 +4,7 @@ indexes = {
     'DJIA','01-Jan-1950', '31-Dec-2016';
     };
 
-frame_size = 500;
+frame_size = 5000;
 frame_step_size = 20;
 
 surrogate_count = 100;
