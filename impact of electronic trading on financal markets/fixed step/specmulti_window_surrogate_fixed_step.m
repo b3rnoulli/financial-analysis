@@ -2,7 +2,7 @@ clear
 clc
 indexes = {
     'DJIA',        datetime('01-Jan-1950'), datetime('31-Dec-2016'), 450, 800;
-    'SP500-removed',       datetime('01-Jan-1950'), datetime('31-Dec-2016'),  450, 800;
+%     'SP500-removed',       datetime('01-Jan-1950'), datetime('31-Dec-2016'),  450, 800;
     };
 
 frame_size = 5000;

@@ -2,7 +2,7 @@ clear
 clc
 indexes = {
     'SP500-removed',         '01-Jan-1950', '31-Dec-2016';
-    'DJIA',        '01-Jan-1950', '31-Dec-2016';
+    'DJIA',        '01-Jan-1950', '10-Dec-2017';
     };
 
 frame_size = 5000;

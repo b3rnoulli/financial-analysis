@@ -29,7 +29,7 @@ indexes = {
 %     'MMM', 34, 400;
 %     'BA',  34, 400;
 %     'BAC', 34, 400;
-        'SP500-removed', 34, 400;
+        'SP500-removed', 29, 230;
     };
 
 % indexes = {
