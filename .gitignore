@@ -1,3 +1,4 @@
 % git ignored files
 empirical data/**
 **.m~
+.DS_Store
