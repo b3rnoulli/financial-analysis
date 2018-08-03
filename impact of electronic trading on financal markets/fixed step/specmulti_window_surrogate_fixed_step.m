@@ -1,8 +1,8 @@
 clear
 clc
 indexes = {
-    'DJIA',        datetime('01-Jan-1950'), datetime('31-Dec-2016'), 450, 800;
-%     'SP500-removed',       datetime('01-Jan-1950'), datetime('31-Dec-2016'),  450, 800;
+    'NASDAQ-removed',        datetime('01-Jan-1950'), datetime('31-Dec-2016'), 450, 800;
+    '9-companies',       datetime('01-Jan-1950'), datetime('31-Dec-2016'),  450, 800;
     };
 
 frame_size = 5000;
@@ -24,12 +24,12 @@ for i=1:length(indexes(:,1))
         
         fourier_spectrum_data = load([path, fourier_spectrum_file_name]);
         
-        shuffled_spectrum_file_name = [indexes{i,1},'-shuffled-surrogate-mean-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
-            '-',datestr(data.date(end_index),'yyyy-mm-dd')];
-        shuffled_surrogate_data = load([path, shuffled_spectrum_file_name]);
+%         shuffled_spectrum_file_name = [indexes{i,1},'-shuffled-surrogate-mean-spectrum-',datestr(data.date(start_index),'yyyy-mm-dd'),...
+%             '-',datestr(data.date(end_index),'yyyy-mm-dd')];
+%         shuffled_surrogate_data = load([path, shuffled_spectrum_file_name]);
         
         specmulti(fourier_spectrum_data.MFDFA2, [path, fourier_spectrum_file_name], indexes{i,4}, indexes{i,5});
-        specmulti(shuffled_surrogate_data.MFDFA2, [path, shuffled_spectrum_file_name], indexes{i,4}, indexes{i,5});
+%         specmulti(shuffled_surrogate_data.MFDFA2, [path, shuffled_spectrum_file_name], indexes{i,4}, indexes{i,5});
         
         start_index = start_index + frame_step_size;
         end_index = end_index + frame_step_size;

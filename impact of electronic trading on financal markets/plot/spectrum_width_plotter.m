@@ -54,7 +54,8 @@ indexes = {
 
 
 indexes = {
-    'SP500-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok', true;
+%     'SP500-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok', true;
+      'NASDAQ-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok', true;  
     };
 
 % indexes = {
@@ -125,7 +126,6 @@ for i=1:length(indexes(:,1))
     end
     
     legend show
-    
     
     %     plot(date_points, alpha_y_shuffled_surrogate,'^g','MarkerSize',8);
     x_left = datenum(data.date(shift_index(data.date, find_index(data.date, indexes{i,2}), frame_size, frame_size_type)))-100;

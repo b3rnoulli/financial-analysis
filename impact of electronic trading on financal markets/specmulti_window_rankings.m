@@ -1,5 +1,5 @@
 indexes = {
-    'SP500-removed',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 29, 230;
+%     'SP500-removed',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 29, 230;
     'NASDAQ-removed',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 30, 208;
     };
 

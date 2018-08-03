@@ -10,6 +10,7 @@ end
 loglog(scales, fq,'k');
 % axis tight
 ylim([0 20]);
+xlim([35 350])
 xlabel('s');
 ylabel('F_{q}(s)')
 ax = gca;

@@ -1,6 +1,7 @@
 function [ p ] = spectrum_plotter(f, alpha, f_alpha, symbol, color, display_name, figure_title)
 fprintf('[spectrum_plotter] Plotting spectrum for %s \n', display_name);
 
+figure(f);
 p = plot(alpha,f_alpha, [symbol],'Color',color,'MarkerFaceColor',color,'MarkerSize',12,'DisplayName', display_name);
 hold on;
 

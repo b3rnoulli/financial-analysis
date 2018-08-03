@@ -62,7 +62,8 @@
 %     };
 
 indexes = {
-    'DJIA-RR-3', '01-Jan-1981', '31-Dec-2016', 35, 450;
+%     'DJIA-RR-3', '01-Jan-1981', '31-Dec-2016', 35, 450;
+%     'NASDAQ-removed',  '01-Jan-1950', '31-Dec-2016', 35, 450;
 };
 
 frame_size = 20;

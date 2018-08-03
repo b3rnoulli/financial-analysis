@@ -1,6 +1,6 @@
 function [ f ] = price_and_returns_plotter(price, x_axis_data, save_path, plot_title)
 
-f = figure('rend','painters','pos',[10 10 1300 600]);
+f = figure('rend','painters','pos',[10 10 1800 1000]);
 
 if ~exist('x_axis_data','var')
     subplot(2,1,1)
@@ -32,7 +32,7 @@ ax.FontSize = 16;
 
 if exist('save_path','var')
     print(f,save_path,'-dpng')
-    savefig(f,save_path)
+%     savefig(f,save_path)
 end
 
 end

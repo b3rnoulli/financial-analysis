@@ -39,23 +39,23 @@ clc
 % };
 
 indexes = {
-%     'DD';
-%     'GE';
-%     'AA';
-%     'IBM';
-%     'KO';
-%     'BA';
-%     'CAT';
-%     'DIS';
-%     'HPQ';
-    'DJIA';
-    'SP500-removed';
-    'NASDAQ';
+    'DD';
+    'GE';
+    'AA';
+    'IBM';
+    'KO';
+    'BA';
+    'CAT';
+    'DIS';
+    'HPQ';
+%     'DJIA';
+%     'SP500-removed';
+%     'NASDAQ-removed';
+%     'NASDAQ-removed-20';
 };
 
 frame_size = 5000;
 frame_step_size = 20;
-
 
 parfor i=1:length(indexes(:,1))
     path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/'];
@@ -64,7 +64,7 @@ parfor i=1:length(indexes(:,1))
     mkdir([get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/']);
     
     start_index = 1;
-    end_index = frame_size;
+    end_index = start_index + frame_size;
     
     while end_index < length(data.returns)
         fprintf('[mfdfa_window_fixed_step] : Calculating MFDFA for index %s date scope %s to %s\n', indexes{i,1},...

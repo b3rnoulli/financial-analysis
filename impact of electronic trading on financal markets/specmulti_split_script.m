@@ -1,8 +1,8 @@
 indexes = {
-%      'SP500-removed',datetime('03-Jan-1950'),  datetime('02-Jan-1987'), datetime('29-Dec-2016'), 23, 169;
+%      'SP500-removed',datetime('03-Jan-1950'),  datetime('02-Jan-1987'), datetime('29-Dec-2016'),  23, 169;
 %      'NASDAQ-removed',datetime('03-Jan-1950'),  datetime('02-Jan-1987'), datetime('29-Dec-2016'), 23, 168;
 %      'DJIA',datetime('03-Jan-1950'),  datetime('02-Jan-1987'), datetime('03-Jan-2017'), 35, 450;
-       'IXIC',datetime('05-Feb-1971'),  datetime('02-Jan-1987'), datetime('03-Jan-2017'), 35, 450;
+%        'IXIC',datetime('05-Feb-1971'),  datetime('02-Jan-1987'), datetime('03-Jan-2017'), 35, 450;
     };
 
 auto_scale_adjust = false;

@@ -1,6 +1,6 @@
 indexes = {
-   'SP500-removed',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 29, 230;
-   'DJIA',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 30, 208;
+   '9-companies',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 29, 230;
+%    'DJIA',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 30, 208;
     };
 
 frame_size = 5000;
@@ -32,3 +32,5 @@ for i=1:length(indexes(:,1))
     end
     
 end
+
+

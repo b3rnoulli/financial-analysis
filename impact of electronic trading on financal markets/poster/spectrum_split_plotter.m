@@ -1,6 +1,6 @@
 indexes = {
-%     'SP500-removed',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), '^-', 'r', 'S&P500 ';
-    '9-companies',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), '^-', 'r', '9-companies ';
+    'SP500-removed',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), '^-', 'r', 'S&P500 ';
+%     '9-companies',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), '^-', 'r', '9-companies ';
 %     'NASDAQ-removed', datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), 'o-', 'k', 'NASDAQ COMP '
     };
 

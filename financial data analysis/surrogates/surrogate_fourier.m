@@ -1,7 +1,7 @@
 function [ transformed_series ] = surrogate_fourier(original_series)
 fprintf('[surrogate_fourier] Calulating fourier surrogate \n');
 transformed_series = zscore(phaseran(original_series));
-fprintf('[surrogate_fourier] Calulating fourier surrogate \n');
+fprintf('[surrogate_fourier] Calulated fourier surrogate \n');
 end
 
 function s=phaseran(x,c)

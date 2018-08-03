@@ -1,8 +1,9 @@
 clear
 clc
 indexes = {
-    'DJIA',        datetime('01-Jan-1950'), datetime('31-Dec-2017'), 34,400;
-%     'SP500-removed',       datetime('01-Jan-1950'), datetime('31-Dec-2016'), 29, 230;
+%     'SP500-removed',           datetime('01-Jan-1950'), datetime('31-Dec-2017'), 34,400;
+    'NASDAQ-removed',        datetime('01-Jan-1950'), datetime('31-Dec-2017'), 34,230;
+%      '9-companies',       datetime('01-Jan-1950'), datetime('31-Dec-2016'), 34, 400;
     };
 
 frame_size = 5000;

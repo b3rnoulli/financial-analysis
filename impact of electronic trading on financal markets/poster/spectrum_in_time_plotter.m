@@ -1,9 +1,9 @@
 % index name, start year, end year
 indexes = {
-%     'SP500-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'xk';
+    'SP500-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'xk';
 %     'DJIA', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'o';
 %       'NASDAQ-removed', datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'o';
-      '9-companies', datetime('02-Jan-1962'), datetime('31-Dec-2016'), 'xk';
+%       '9-companies', datetime('02-Jan-1962'), datetime('31-Dec-2016'), 'xk';
     };
 
 

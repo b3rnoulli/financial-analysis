@@ -2,10 +2,14 @@ clear
 clc
 
 indexes = {
-%     'SP500-removed',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok', true;
+%     'SP500-removed',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok', false;
 %       'DJIA',datetime('01-Jan-1950'), datetime('31-Dec-2016'), 'ok', true;
-      '9-companies',datetime('01-Jan-1950'), datetime('29-Dec-2016'), 'ok', true;
-%       'NASDAQ',datetime('01-Jan-1950'), datetime('29-Dec-2016'), 'ok', true;
+%       '9-companies',datetime('01-Jan-1950'), datetime('29-Dec-2016'), 'ok', true;
+%       'NASDAQ-removed',datetime('01-Jan-1950'), datetime('29-Dec-2016'), 'ok', false;
+%       'NASDAQ-removed-20',datetime('01-Jan-1950'), datetime('29-Dec-2016'), 'ok', false;
+%       'SP500-removed',datetime('01-Jan-1963'), datetime('29-Dec-1992'), 'ok', false;
+%        'NASDAQ-removed',datetime('01-Jan-1963'), datetime('29-Dec-1992'), 'ok', false;
+        'HPQ',datetime('01-Jan-1962'), datetime('29-Dec-2016'), 'ok', false;
     };
 
 frame_size = 5000;
@@ -18,9 +22,11 @@ save_data=true;
 for i=1:length(indexes(:,1))
     path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/'];
     data = load(indexes{i,1});
-    
-    start_index = 1;
-    end_index =frame_size;
+%     data = load('/Users/b3rnoulli/Development/Matlab workspace/financial-analysis/empirical data/HPQ/HPQ_1962_01_02__2017_07_10_ret.mat');
+        start_index = 1;
+    end_index = start_index + frame_size;
+%     start_index = 1;
+%     end_index =frame_size;
     date_points = datetime('01-Jan-1970');
     date_start_points = datetime('01-Jan-1970');
     point_counter = 1;
@@ -53,33 +59,34 @@ for i=1:length(indexes(:,1))
         
     end
     
-    plot(datenum(date_points),alpha_y,'xk','MarkerSize',8, 'DisplayName',indexes{i,1});
+    plot(date_points,alpha_y,'xk','MarkerSize',8, 'DisplayName',indexes{i,1});
     hold on;
     
     if indexes{i,5}
         plot(datenum(date_points), alpha_y_fourier_surrogate,'or','MarkerSize',8, 'DisplayName','Fourier Surrogate');
         plot(datenum(date_points), alpha_y_rankings_surrogate, '*b', 'MarkerSize',8, 'DisplayName','Rankings Surrogate');
     end
-    %     xlim([date_points(1) date_points(end)]);
-    
+%     xlim([datenum(date_points(1)) datenum(date_points(end))]);
+    legend show
     ylabel('\Delta\alpha (t)','FontSize', 14);
     xlabel('t [year]','FontSize', 14);
     ylim([0 0.7]);
     if save_figure == true
-        %         savefig(f,[indexes{i,1},'-spectrum-width-',datestr(indexes{i,2},'yyyy-mm-dd'),'-', datestr(indexes{i,3},'yyyy-mm-dd')]);
-        %         print(f,[indexes{i,1},'-spectrum-width-',datestr(indexes{i,2},'yyyy-mm-dd'),'-', datestr(indexes{i,3},'yyyy-mm-dd')],'-depsc')
+%                 savefig(f,[indexes{i,1},'-spectrum-width-',datestr(indexes{i,2},'yyyy-mm-dd'),'-', datestr(indexes{i,3},'yyyy-mm-dd')]);
+%                 print(f,[indexes{i,1},'-spectrum-width-',datestr(indexes{i,2},'yyyy-mm-dd'),'-', datestr(indexes{i,3},'yyyy-mm-dd')],'-depsc')
         save([get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/',indexes{i,1},'-spectrum-width.mat'],'date_points','alpha_y');
     end
     
     if save_data ==true
-        fid = fopen([indexes{i},'-spectrum-width-with-surrogates.csv'], 'w') ;
-        fprintf(fid,['window_start_date,','window_end_date,','width,','fourier-surrogate,','rankings-surrogate\n']);
+        fid = fopen([indexes{i},'-spectrum-width-with-surrogates-daily-data.csv'], 'w') ;
+%         fprintf(fid,['window_start_date,','window_end_date,','width,','fourier-surrogate,','rankings-surrogate\n']);
+        fprintf(fid,['window_end_date,','width\n']);
         
-        for j=1:1:length(date_points) && end_index < find_index(data.date,indexes{i,3})
-            fprintf(fid,[datestr(date_start_points(j),'dd-mm-yyyy'),',',datestr(date_points(j),'dd-mm-yyyy'),',',num2str(alpha_y(j)),',',num2str(alpha_y_fourier_surrogate(j)),',',num2str(alpha_y_rankings_surrogate(j)),'\n']);
+        for j=1:1:length(date_points)
+%             fprintf(fid,[datestr(date_start_points(j),'dd-mm-yyyy'),',',datestr(date_points(j),'dd-mm-yyyy'),',',num2str(alpha_y(j)),',',num2str(alpha_y_fourier_surrogate(j)),',',num2str(alpha_y_rankings_surrogate(j)),'\n']);
+%             fprintf(fid,[',datestr(date_points(j),'dd-mm-yyyy'),',',num2str(alpha_y(j)),'\n']);
         end
         fclose(fid);
-        
     end
     
     datetick('x','yyyy');

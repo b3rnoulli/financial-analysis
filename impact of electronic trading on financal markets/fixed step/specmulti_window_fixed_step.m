@@ -1,3 +1,5 @@
+clear
+clc
 % index name, start year, end year
 indexes = {
 %     'HPQ', 34, 400;
@@ -29,33 +31,35 @@ indexes = {
 %     'MMM', 34, 400;
 %     'BA',  34, 400;
 %     'BAC', 34, 400;
-        'SP500-removed', 29, 230;
+%         '9-companies', 34, 350;
+%        'NASDAQ-removed' 35, 450;
+%        'NASDAQ-removed-20' 35, 450;
+%        'SP500-removed' 35, 450;
     };
 
-% indexes = {
-%     'DD' , 34, 400;
-%     'GE' , 34, 400;
-%     'AA' , 34, 400;
-%     'IBM', 34, 400;
-%     'KO' , 34, 400;
-%     'BA' , 34, 400;
-%     'CAT', 34, 400;
-%     'DIS', 34, 400;
-%     'HPQ', 34, 400;
+indexes = {
+    'DD' , 34, 400;
+    'GE' , 34, 400;
+    'AA' , 34, 400;
+    'IBM', 34, 400;
+    'KO' , 34, 400;you
+    'BA' , 34, 400;
+    'CAT', 34, 400;
+    'DIS', 34, 400;
+    'HPQ', 34, 400;
 %     '9-companies', 34, 400;
-% };
+};
 
 frame_size = 5000;
 frame_step_size = 20;
 
-for i=1:length(indexes(:,1))
+parfor i=1:length(indexes(:,1))
     path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/'];
-%     data = load([indexes{i,1},'_1980_03_18__2017_06_16_ret']);
-        data = load([indexes{i,1}]);
+    data = load([indexes{i,1}]);
     mkdir([get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/']);
-    
+%     8372
     start_index = 1;
-    end_index = frame_size;
+    end_index = start_index + frame_size;
     
     while end_index < length(data.returns)
         fprintf('[mfdfa_window_fixed_step] : Calculating MFDFA for index %s date scope %s to %s\n', indexes{i,1},...
@@ -65,9 +69,7 @@ for i=1:length(indexes(:,1))
         
         spectrum_data = load([path,spectrum_file_name]);
         specmulti(spectrum_data.MFDFA2, [path, spectrum_file_name], indexes{i,2}, indexes{i,3});
-        
         start_index = start_index + frame_step_size;
         end_index = end_index + frame_step_size;
-        
     end
 end

@@ -10,7 +10,7 @@ frame_step_size = 20;
 
 surrogate_count = 100;
 
-surrogates_per_window = 1;
+surrogates_per_window = 100;
 
 for i=1:length(indexes(:,1))
     path = [get_root_path(),'/financial-analysis/empirical data/',indexes{i,1},'/spectrum/window/surrogate/'];

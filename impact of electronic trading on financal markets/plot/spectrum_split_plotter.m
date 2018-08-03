@@ -1,12 +1,13 @@
 indexes = {
-%     'SP500-removed',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), '^-', 'r', 'S&P500 ';
+    'SP500-removed',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), '^-', 'r', 'S&P500 ';
 %          'DJIA',datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('03-Jan-2017'), '^-', 'r', 'DJIA ';
 %         'NASDAQ-removed', datetime('03-Jan-1950'), datetime('02-Jan-1987'), datetime('29-Dec-2016'), 'o-', 'k', 'NASDAQ COMP '
-        '9-companies', datetime('02-Jan-1962'), datetime('02-Jan-1987'), datetime('03-Jan-2017'), 'o-', 'k', '9-companies'
+%         '9-companies', datetime('02-Jan-1962'), datetime('02-Jan-1987'), datetime('03-Jan-2017'), 'o-', 'k', '9-companies'
     };
 
-save_figures = true;
-write_to_file = true;
+save_figures = false;
+write_to_file = false;
+plot_surrogates = true;
 
 for i=1:1:length(indexes(:,1))
     f = figure('units','normalized','position',[.1 .1 .5 .6]);
@@ -18,6 +19,16 @@ for i=1:1:length(indexes(:,1))
     spectrum_data = load([spectrum_file_name,'.mat']);
     p = spectrum_plotter(f, spectrum_data.MFDFA2.alfa(31:70), spectrum_data.MFDFA2.f(31:70), '-o', [ 0    0.4470    0.7410], [ indexes{i,7}, datestr(indexes{i,2},'yyyy'),'-',datestr(indexes{i,3},'yyyy')]);
     set(p,'linewidth',3);
+    
+    if plot_surrogates  == true
+        spectrum_surrogate_file_name = [indexes{i,1},'-rankings-surrogate-mean-spectrum-',datestr(indexes{i,2},'yyyy-mm-dd'),...
+        '-', datestr(datetime('05-Jan-1987'),'yyyy-mm-dd')];
+        spectrum_surrogate_data = load([spectrum_surrogate_file_name,'.mat']); 
+        p = spectrum_plotter(f, spectrum_surrogate_data.MFDFA2.alfa(31:70), spectrum_surrogate_data.MFDFA2.f(31:70), '-s', 'g', [ indexes{i,7}, datestr(indexes{i,2},'yyyy'),'-',datestr(indexes{i,3},'yyyy')]);
+        set(p,'linewidth',3);
+        
+    end
+    
     if write_to_file == true
         fid = fopen([spectrum_file_name,'.csv'], 'w') ;
         fprintf(fid,['alfa,','f_alfa\n']);
