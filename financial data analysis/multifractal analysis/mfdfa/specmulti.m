@@ -18,7 +18,7 @@ xlabel('s','FontSize', 14);
 ylabel('F_q(s)','FontSize', 14);
 
 axis tight
-ylim([10^-5 5000])
+% ylim([10^-5 5000])
 if ~exist('bottom_bound','var') && ~exist('top_bound','var')
     [ x, ~ ] = ginput(2);
     top_bound = x(2);
